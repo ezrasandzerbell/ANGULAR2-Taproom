@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Tap Room</h1>
    <ul> <!-- repeater DIRECTIVE --> <!-- tasks is the array and it is assigning each iteration to currentTask temporarly -->
-     <li *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, Price: {{keg.price}}, Alcohol Content: {{keg.alcohol}}<br><button (click)="editKeg(keg)">Edit!</button><br></li>
+     <li *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, Price: {{keg.price}}, Alcohol Content: {{keg.alcohol}}, Quantity Remaining: {{keg.quantity}}<br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
    </ul>
 
     <div *ngIf="selectedKeg">
@@ -40,16 +40,21 @@ export class AppComponent {
     this.selectedKeg = null;
   }
 
+  pourPint(clickedKeg) {
+    var newQuantity = clickedKeg.quantity - 1;
+    clickedKeg.quantity = newQuantity;
+    console.log(clickedKeg.quantity)
+  }
 
   kegs: Keg[] = [
-    new Keg('Black Butte', 'Deschutes', 4.00, 5.2),
-    new Keg('Mirror Pond', 'Deschutes', 4.00, 5),
-    new Keg('Obsidian Stout', 'Deschutes', 4.00, 6.4),
+    new Keg('Black Butte', 'Deschutes', 4.00, 5.2, 124),
+    new Keg('Mirror Pond', 'Deschutes', 4.00, 5, 124),
+    new Keg('Obsidian Stout', 'Deschutes', 4.00, 6.4, 124),
   ];
 }
 //class declaration is our MODEL which is also data
 export class Keg {
-  constructor(public name: string, public brand: string, public price: number, public alcohol: number) { }
+  constructor(public name: string, public brand: string, public price: number, public alcohol: number, public quantity: number) { }
 }
 
 
