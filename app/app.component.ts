@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Tap Room</h1>
    <ul> <!-- repeater DIRECTIVE --> <!-- tasks is the array and it is assigning each iteration to currentTask temporarly -->
-     <li [class]="qtyColor(keg)" *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, Price: {{keg.price}}, Alcohol Content: {{keg.alcohol}}, Quantity Remaining: {{keg.quantity}}<br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
+     <li *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, <span [class]="priceColor(keg)">Price: {{keg.price}}</span>, Alcohol Content: {{keg.alcohol}}, <span [class]="qtyColor(keg)">Quantity Remaining: {{keg.quantity}}</span><br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
    </ul>
 
     <div *ngIf="selectedKeg">
@@ -30,6 +30,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
 
   selectedKeg: Keg = null;
+
+  priceColor(clickedKeg) {
+    if (clickedKeg.price < 5) {
+      return "bg-success";
+    } else {
+      return "bg-info";
+    }
+  }
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
