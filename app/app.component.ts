@@ -8,7 +8,8 @@ import { Keg } from './keg.model';
   template: `
   <div class="container">
     <h1>Tap Room</h1>
-   <keg-list [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
+    <filter-input (querySender)="newQuery($event)"></filter-input>
+   <keg-list [userQuery]="userQuery" [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
 
   <edit-keg [childSelectedKeg]="selectedKeg" (clickSender)="finishedEditing()"></edit-keg>
   </div>
@@ -19,6 +20,11 @@ import { Keg } from './keg.model';
 export class AppComponent {
 
   selectedKeg: Keg = null;
+  userQuery: string = "";
+
+  newQuery(input: string) {
+    this.userQuery = input;
+  }
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
@@ -41,6 +47,9 @@ export class AppComponent {
     new Keg('Black Butte', 'Deschutes', 4.00, 5.2, 124),
     new Keg('Mirror Pond', 'Deschutes', 4.00, 5, 124),
     new Keg('Obsidian Stout', 'Deschutes', 4.00, 6.4, 12),
+    new Keg('Total Domination', 'Ninkasi', 4.00, 5.2, 124),
+    new Keg('Dead Guy Ale', 'Rogue', 4.00, 5.2, 124),
+    new Keg('Marionberry Sour', 'Rogue', 4.00, 5, 124),
   ];
 }
 //class declaration is our MODEL which is also data

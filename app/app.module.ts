@@ -5,6 +5,8 @@ import { AppComponent }   from './app.component';//actually refers to the root c
 import { FormsModule } from '@angular/forms';
 import { KegListComponent } from './keg-list.component';
 import { EditKegComponent } from './edit-keg.component';
+import { CompletenessPipe } from './completeness.pipe';
+import { KegFilterComponent } from './keg-filter.component';
 
 //Module Decorator
 @NgModule({
@@ -12,7 +14,9 @@ import { EditKegComponent } from './edit-keg.component';
                   FormsModule ], //imports array under the decorator imports other pieces of our application we want included in this module.
   declarations: [ AppComponent,
                   KegListComponent,
-                  EditKegComponent ], //array of all components that will reside in this module
+                  EditKegComponent,
+                  KegFilterComponent,
+                  CompletenessPipe ], //array of all components that will reside in this module
   bootstrap:    [ AppComponent ] // array of components required immediately upon launching the application
 })
 

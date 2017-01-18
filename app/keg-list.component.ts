@@ -5,12 +5,13 @@ import { Keg } from './keg.model';
   selector: 'keg-list',
   template: `
     <ul> <!-- repeater DIRECTIVE --> <!-- tasks is the array and it is assigning each iteration to currentTask temporarly -->
-      <li *ngFor="let keg of childKegList">Name: {{keg.name}} <br> Brand: {{keg.brand}}, <span [class]="priceColor(keg)">Price: {{keg.price}}</span>, Alcohol Content: <span [class]="abvStyle(keg)">{{keg.alcohol}}</span>, <span [class]="qtyColor(keg)">Quantity Remaining: {{keg.quantity}}</span><br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
+      <li *ngFor="let keg of childKegList | completeness:userQuery">Name: {{keg.name}} <br> Brand: {{keg.brand}}, <span [class]="priceColor(keg)">Price: {{keg.price}}</span>, Alcohol Content: <span [class]="abvStyle(keg)">{{keg.alcohol}}</span>, <span [class]="qtyColor(keg)">Quantity Remaining: {{keg.quantity}}</span><br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
     </ul>
   `
 })
 
 export class KegListComponent {
+  @Input() userQuery: string;
   @Input() childKegList: Keg[];
   @Output() editClickSender = new EventEmitter();
   @Output() pourClickSender = new EventEmitter();
