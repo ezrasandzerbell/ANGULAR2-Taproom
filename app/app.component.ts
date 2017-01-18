@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Tap Room</h1>
    <ul> <!-- repeater DIRECTIVE --> <!-- tasks is the array and it is assigning each iteration to currentTask temporarly -->
-     <li *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, Price: {{keg.price}}, Alcohol Content: {{keg.alcohol}}, Quantity Remaining: {{keg.quantity}}<br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
+     <li [class]="qtyColor(keg)" *ngFor="let keg of kegs">Name: {{keg.name}} <br> Brand: {{keg.brand}}, Price: {{keg.price}}, Alcohol Content: {{keg.alcohol}}, Quantity Remaining: {{keg.quantity}}<br><button (click)="editKeg(keg)">Edit!</button><button (click)="pourPint(keg)">Pour a Beer!</button><br></li>
    </ul>
 
     <div *ngIf="selectedKeg">
@@ -33,7 +33,6 @@ export class AppComponent {
 
   editKeg(clickedKeg) {
     this.selectedKeg = clickedKeg;
-    console.log(clickedKeg);
   }
 
   finishedEditing() {
@@ -41,15 +40,26 @@ export class AppComponent {
   }
 
   pourPint(clickedKeg) {
-    var newQuantity = clickedKeg.quantity - 1;
-    clickedKeg.quantity = newQuantity;
-    console.log(clickedKeg.quantity)
+    if (clickedKeg.quantity > 0) {
+      var newQuantity = clickedKeg.quantity - 1;
+      clickedKeg.quantity = newQuantity;
+    } else {
+      alert("This keg is out! Time to rotate kegs!");
+    }
+  }
+
+  qtyColor(clickedKeg) {
+    if (clickedKeg.quantity <= 10) {
+      return "bg-danger";
+    } else {
+      return "bg-success";
+    }
   }
 
   kegs: Keg[] = [
     new Keg('Black Butte', 'Deschutes', 4.00, 5.2, 124),
     new Keg('Mirror Pond', 'Deschutes', 4.00, 5, 124),
-    new Keg('Obsidian Stout', 'Deschutes', 4.00, 6.4, 124),
+    new Keg('Obsidian Stout', 'Deschutes', 4.00, 6.4, 12),
   ];
 }
 //class declaration is our MODEL which is also data
