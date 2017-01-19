@@ -7,11 +7,13 @@ import { Keg } from './keg.model';
   selector: 'app-root', // defines the specific tag to render within.
   template: `
   <div class="container">
-    <h1>Tap Room</h1>
-    <filter-input (querySender)="newQuery($event)"></filter-input>
-   <keg-list [userQuery]="userQuery" [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
+    <div class="well">
+    <h1 class="beerTapHeader">Beers On Tap</h1>
+    <div class="centerFilter"><filter-input (querySender)="newQuery($event)"></filter-input></div>
+     <keg-list [userQuery]="userQuery" [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
 
-  <edit-keg [childSelectedKeg]="selectedKeg" (clickSender)="finishedEditing()"></edit-keg>
+    <edit-keg [childSelectedKeg]="selectedKeg" (clickSender)="finishedEditing()"></edit-keg>
+    </div>
   </div>
   `
 })

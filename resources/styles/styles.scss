@@ -1,0 +1,60 @@
+$BLUE: #133050;
+$WHITE: #F6F1ED;
+$BROWN: #6A6917;
+$DARKGREEN: #5A3F2E;
+$LIGHTGREEN: #A68E34;
+
+body {
+  background-color: black;
+  background-image: url("../../resources/images/mainBgd.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.navigationBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: $WHITE;
+  height: 15%;
+
+  img {
+    height: 120px;
+    margin-top: -25px;
+  }
+  .centerLogo {
+    font-size: 80px;
+    font-family: 'Raleway', sans-serif;
+  }
+}
+
+.well {
+  margin-top: 10%;
+  background-color: rgba(245, 245, 245, 0.9);
+  .beerTapHeader {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+  }
+}
+
+.panel {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  margin-left: 30%;
+  margin-right: 30%;
+  span:first-child {
+    color: red;
+    font-size: 20px;
+  }
+}
+
+.centerFilter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
