@@ -7,6 +7,8 @@ import { KegListComponent } from './keg-list.component';
 import { EditKegComponent } from './edit-keg.component';
 import { CompletenessPipe } from './completeness.pipe';
 import { KegFilterComponent } from './keg-filter.component';
+import { NewKegComponent } from './new-keg.component';
+
 
 //Module Decorator
 @NgModule({
@@ -16,7 +18,8 @@ import { KegFilterComponent } from './keg-filter.component';
                   KegListComponent,
                   EditKegComponent,
                   KegFilterComponent,
-                  CompletenessPipe ], //array of all components that will reside in this module
+                  CompletenessPipe,
+                  NewKegComponent, ], //array of all components that will reside in this module
   bootstrap:    [ AppComponent ] // array of components required immediately upon launching the application
 })
 

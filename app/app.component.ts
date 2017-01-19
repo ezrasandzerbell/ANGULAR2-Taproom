@@ -13,6 +13,7 @@ import { Keg } from './keg.model';
      <keg-list [userQuery]="userQuery" [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
 
     <edit-keg [childSelectedKeg]="selectedKeg" (clickSender)="finishedEditing()"></edit-keg>
+    <br><br><new-keg (newKegSender)="addKeg($event)"></new-keg>
     </div>
   </div>
   `
@@ -20,6 +21,7 @@ import { Keg } from './keg.model';
 
 //Part 2 CLASS DEFINITION -- determines how it BEHAVES
 export class AppComponent {
+
 
   selectedKeg: Keg = null;
   userQuery: string = "";
@@ -34,6 +36,10 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedKeg = null;
+  }
+
+  addKeg(keg) {
+    this.masterKegList.push(keg);
   }
 
   pourPint(clickedKeg) {
