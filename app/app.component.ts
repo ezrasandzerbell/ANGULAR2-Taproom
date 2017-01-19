@@ -13,7 +13,7 @@ import { Keg } from './keg.model';
      <keg-list [userQuery]="userQuery" [childKegList]="masterKegList" (editClickSender)="editKeg($event)" (pourClickSender)="pourPint($event)"></keg-list>
 
     <edit-keg [childSelectedKeg]="selectedKeg" (clickSender)="finishedEditing()"></edit-keg>
-    <br><br><new-keg (newKegSender)="addKeg($event)"></new-keg>
+    <br><br><new-keg [newKegForm]="newKegForm" (newKegSender)="addKeg($event)" (newKegFormSender)="showKegForm()"></new-keg>
     </div>
   </div>
   `
@@ -24,13 +24,14 @@ export class AppComponent {
 
 
   selectedKeg: Keg = null;
+  newKegForm: boolean = false;
   userQuery: string = "";
 
   newQuery(input: string) {
     this.userQuery = input;
   }
 
-  editKeg(clickedKeg) {
+  editKeg(clickedKeg: Keg) {
     this.selectedKeg = clickedKeg;
   }
 
@@ -39,7 +40,12 @@ export class AppComponent {
   }
 
   addKeg(keg) {
+    this.newKegForm = false;
     this.masterKegList.push(keg);
+  }
+
+  showKegForm() {
+    this.newKegForm = true;
   }
 
   pourPint(clickedKeg) {
